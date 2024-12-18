@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10</title>
+    <style>
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 300px;
+            /* background-color: pink; */
+            margin: auto;
+        }
+
+        #checkbox {
+            display: none;
+        }
+
+        .circle {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        .circle svg {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            color: #ececec;
+            z-index: -1;
+        }
+
+        .circleInner1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #444444;
+        }
+
+        .circleInner2 {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-color: #ececec;
+            transition: all 1s;
+            /* 用clip - path来定义圆形的裁剪区域 */
+            clip-path: circle(50%);
+        }
+
+        #checkbox:checked~.circle .circleInner1 .circleInner2 {
+            transform: translate(15px, -10px);
+            background-color: #636363;
+        }
+
+        #checkbox:checked~.circle .circleInner1 {
+            background-color: #fff;
+        }
+
+        #checkbox:checked~.circle svg {
+            animation: A 1s linear 1 forwards;
+        }
+
+        .backSVG {
+            transition: all 1s;
+            animation: B 1s linear 1 forwards;
+        }
+
+
+
+        @keyframes A {
+            0% {
+                color: #ececec;
+            }
+
+            50% {
+                transform: rotate(360deg);
+                color: #9999;
+            }
+
+            100% {
+                transform: rotate(720deg);
+                color: #636363;
+            }
+        }
+
+        @keyframes B {
+            0% {
+                color: #636363;
+                transform: rotate(0);
+            }
+
+            50% {
+                transform: rotate(-360deg);
+                color: #999;
+            }
+
+            100% {
+                transform: rotate(-760deg);
+                color: #ececec;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <svg style=" display: none;">
+        <symbol id="sun" viewBox="0 0 512 512">
+            <path fill="currentColor"
+                d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96s96-43.1 96-96s-43.1-96-96-96m246.4 80.5l-94.7-47.3l33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5l-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4l-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3l-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5l47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7l100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4l94.7-47.3c13-6.5 13-24.7.2-31.1m-155.9 106c-49.9 49.9-131.1 49.9-181 0s-49.9-131.1 0-181s131.1-49.9 181 0s49.9 131.1 0 181" />
+        </symbol>
+    </svg>
+
+
+    <div class="box">
+        <input type="checkbox" id="checkbox">
+        <label class="circle" for="checkbox">
+            <div class="circleInner1">
+                <div class="circleInner2"></div>
+            </div>
+            <svg>
+                <use href="#sun" />
+            </svg>
+        </label>
+        <span>JavaScript</span>
+    </div>
+    <script>
+        let circle = document.querySelector('.circle')
+        let checkbox = document.querySelector('#checkbox')
+        let svg = document.querySelector('.circle svg')
+
+        circle.addEventListener('click', function (e) {
+            console.log(checkbox.checked);
+            if (checkbox.checked) {
+                svg.classList.add('backSVG')
+            } else {
+                svg.classList.remove('backSVG')
+            }
+        })
+    </script>
+</body>
+
+</html>

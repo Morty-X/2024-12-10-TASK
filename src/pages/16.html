@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        @property --degree {
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: true;
+        }
+
+        :root {
+            --degree: 0deg;
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            background: conic-gradient(from var(--degree), red 36deg, white 36deg 170deg, white 170deg);
+            border-radius: 50%;
+            animation: roll 1.5s linear infinite forwards;
+        }
+
+        .circle {
+            width: 95px;
+            height: 95px;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+
+        @keyframes roll {
+            100% {
+                --degree: 360deg;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="circle"></div>
+    </div>
+</body>
+
+</html>

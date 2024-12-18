@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            height: 58px;
+            line-height: 58px;
+        }
+
+        .box {
+            width: 280px;
+            height: 35px;
+            padding: 8px 5px;
+            background-color: #0a59f7;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .content {
+            margin: auto;
+            width: 200px;
+            font-size: 16px;
+            color: #fff;
+            /* transform: translateY(-290px); */
+            animation: upAndDown 10s linear infinite backwards;
+        }
+
+
+        @keyframes upAndDown {
+            100% {
+                transform: translateY(-290px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul class="content">
+            <li>小明同学加入了DW241031</li>
+            <li>小李同学加入了DW241031</li>
+            <li>小张同学加入了DW241031</li>
+            <li>小王同学加入了DW241031</li>
+            <li>小亮同学加入了DW241031</li>
+            <li>小青同学加入了DW241031</li>
+        </ul>
+    </div>
+</body>
+
+</html>

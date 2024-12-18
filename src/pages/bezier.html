@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贝塞尔曲线</title>
+</head>
+
+<body>
+    <script>
+        function cubicBizier(x1, y1, x2, y2, t) {
+            let x = 3 * t * Math.pow(1 - t, 2) * x1 + 3 * Math.pow(t, 2) * (1 - t) * x2 + Math.pow(t, 3)
+            let y = 3 * t * Math.pow(1 - t, 2) * y1 + 3 * Math.pow(t, 2) * (1 - t) * y2 + Math.pow(t, 3)
+            return [x, y]
+        }
+        let res = cubicBizier(0.7, -1.04, 0, 1.95, 0.5)
+        console.log(res);
+        
+    </script>
+</body>
+
+</html>

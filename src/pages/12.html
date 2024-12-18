@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        @property --degree {
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: true;
+
+        }
+
+        :root {
+            --degree: 0deg;
+        }
+
+        .bar {
+            position: relative;
+            margin: auto;
+            margin-top: 100px;
+            width: 500px;
+            height: 500px;
+        }
+
+        .bar::before {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            content: '';
+            display: block;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(100px);
+            background-image: conic-gradient(from var(--degree), #ed9db2 0%, #61649f, skyblue, #ed9db2);
+            animation: identifier 3s linear infinite forwards;
+
+
+        }
+
+        @keyframes identifier {
+            to {
+                --degree: 360deg;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="bar"></div>
+
+</body>
+
+</html>

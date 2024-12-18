@@ -1,0 +1,21 @@
+.date-picker {
+    display: flex;
+    align-items: center;
+    width: 240px;
+    height: 30px;
+    margin: 10px;
+    padding: 3px 5px;
+    border: 1px solid #999;
+    cursor: pointer;
+}
+
+.date-picker svg {
+    width: 30px;
+    height: 30px;
+}
+
+.date-picker-choiceDate {
+    outline: none;
+    border: none;
+    margin-left: 10px;
+}

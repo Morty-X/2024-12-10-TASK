@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11</title>
+    <style>
+        * {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .choiceList {
+            display: flex;
+            align-items: center;
+            position: fixed;
+            right: 10px;
+            top: 10px;
+            height: 40px;
+            padding: 10px 15px;
+            background-color: #292b2d;
+            border-radius: 20px;
+            transition: all 0.8s;
+        }
+
+        .colors {
+            display: flex;
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            width: 200px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .colorItem {
+            width: 20px;
+            height: 20px;
+            border-radius: 9999px;
+            background-color: palegreen;
+            transition: all 0.2s;
+        }
+
+        .colorItem:hover {
+            transform: scale(1.1);
+        }
+
+        .funs {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 200px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .item {
+            width: 25px;
+            height: 25px;
+        }
+
+        .item img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .language {
+            position: relative;
+        }
+
+        .collapseMenu {
+            display: none;
+            position: absolute;
+            padding: 10px 5px 10px 8px;
+            left: 72px;
+            width: 100px;
+            height: 120px;
+            border: 1px solid #292b2d;
+            border-radius: 0 0 10px 10px;
+        }
+
+
+        .collapseMenu li,
+        .languageMenu li {
+            height: 30px;
+            line-height: 30px;
+            border-radius: 10px;
+            margin: 4px 0;
+        }
+
+        .collapseMenu li:hover,
+        .languageMenu li:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .languageMenu {
+            display: none;
+            position: absolute;
+            padding: 10px 5px 10px 8px;
+            left: -8px;
+            width: 100px;
+            height: 120px;
+            border: 1px solid #292b2d;
+            border-radius: 0 0 10px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="choiceList">
+        <div class="colors">
+            <div style="background-color: #0061e4;" class="colorItem"></div>
+            <div style="background-color: #685df1;" class="colorItem"></div>
+            <div style="background-color: #e34260;" class="colorItem"></div>
+            <div style="background-color: #efb843;" class="colorItem"></div>
+            <div style="background-color: #4860fe;" class="colorItem"></div>
+            <div style="background-color: #0ecd8a;" class="colorItem"></div>
+            <div style="background-color: #39383f;" class="colorItem"></div>
+        </div>
+        <div class="funs">
+            <div class="item color">
+                <img src="../assets/images/color.svg" alt="">
+            </div>
+
+            <div class="item collapse">
+                <img src="../assets/images/collapse.svg" alt="">
+                <ul class="collapseMenu">
+                    <li>居左</li>
+                    <li>居中</li>
+                    <li>居右</li>
+                </ul>
+            </div>
+            <div class="item language">
+                <img src="../assets/images/language.svg" alt="">
+                <ul class="languageMenu">
+                    <li>English</li>
+                    <li>简体中文</li>
+                    <li>日本语</li>
+                </ul>
+            </div>
+            <div class="item sunC">
+                <img src="../assets/images/sunC.svg" alt="">
+            </div>
+        </div>
+    </div>
+    <script>
+        let colors = document.querySelector('.colors')
+        let color = document.querySelector('.color')
+        let collapse = document.querySelector('.collapse')
+        let collapseMenu = document.querySelector('.collapseMenu')
+        let language = document.querySelector('.language')
+        let languageMenu = document.querySelector('.languageMenu')
+        let sunC = document.querySelector('.sunC')
+
+        let flag1 = true
+
+        color.addEventListener('click', function (e) {
+            if (flag1) {
+                colors.style.display = 'flex'
+                flag1 = false
+            } else {
+                colors.style.display = 'none'
+                flag1 = true
+            }
+        })
+
+        collapse.addEventListener('contextmenu', function (e) {
+            e.preventDefault()
+            collapseMenu.style.display = 'block'
+        })
+
+        language.addEventListener('contextmenu', function (e) {
+            e.preventDefault()
+            languageMenu.style.display = 'block'
+        })
+
+        window.addEventListener('click', function (e) {
+            if (e.target !== collapseMenu) {
+                collapseMenu.style.display = 'none'
+            }
+        })
+        window.addEventListener('click', function (e) {
+            if (e.target !== languageMenu) {
+                languageMenu.style.display = 'none'
+            }
+        })
+
+        sunC.addEventListener('click', function (e) {
+
+        })
+    </script>
+</body>
+
+</html>

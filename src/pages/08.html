@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08</title>
+    <style>
+        body {
+            transition: all 0.3s;
+        }
+
+        .text {
+            width: 300px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 50px;
+            margin: auto;
+            margin-top: 300px;
+        }
+
+        .toggle {
+            position: fixed;
+            top: 0;
+            right: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .line {
+            width: 2px;
+            height: 120px;
+            background-color: #3d59e5;
+            transition: all 0.3s;
+        }
+
+        .circle {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #3d59e5;
+            border-radius: 666px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toggle">
+        <div class="line"></div>
+        <div class="circle"></div>
+    </div>
+    <div class="text">JavaScript</div>
+    
+    <script>
+        let toggle = document.querySelector('.toggle')
+        let circle = document.querySelector('.circle')
+        let line = document.querySelector('.line')
+        let text = document.querySelector('.text')
+
+        // 下拉后得状态
+        let flag = true
+        circle.addEventListener('click', function (e) {
+            line.style.height = '280px'
+            setTimeout(function () {
+                line.style.height = '120px'
+            }, 300)
+            if (flag) {
+                document.documentElement.style.backgroundColor = 'black'
+                text.style.color = '#fff'
+                flag = false
+            } else {
+                document.documentElement.style.backgroundColor = 'white'
+                text.style.color = '#000'
+                flag = true
+            }
+        })
+    </script>
+</body>
+
+</html>

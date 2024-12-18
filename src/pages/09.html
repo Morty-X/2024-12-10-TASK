@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .dark body {
+            background-color: #000;
+            transition: all 1s;
+        }
+
+        .switch {
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 500px;
+            height: 200px;
+        }
+
+        .switch span {
+            font-size: 30px;
+            margin-right: 30px;
+            font-weight: 700;
+        }
+
+        .dark .switch span {
+            color: #fff;
+        }
+
+        #switch-checkbox {
+            display: none;
+        }
+
+        .switch-main {
+            position: relative;
+            width: 130px;
+            height: 40px;
+            padding: 3px 5px;
+            background-color: #4293ff;
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+
+        }
+        
+        .left,
+        .right {
+            float: left;
+            width: 40px;
+            height: 40px;
+            transition: all 0.5s;
+            background-color: #f58c4c;
+            border-radius: 40px;
+        }
+
+        .left {
+            position: absolute;
+            background-color: #4293ff;
+            width: 60px;
+            transform: translateX(-68px);
+            z-index: 1;
+        }
+
+        #switch-checkbox:checked~.switch-main .right {
+            transform: translateX(90px);
+            background-color: #fff;
+        }
+
+        #switch-checkbox:checked~.switch-main .left {
+            width: 185px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="switch">
+        <span>Mancuoj</span>
+        <input type="checkbox" id="switch-checkbox">
+        <label class="switch-main" for="switch-checkbox">
+            <div class="left"></div>
+            <div class="right"></div>
+        </label>
+    </div>
+    <script>
+        let switchBox = document.querySelector('#switch-checkbox')
+        switchBox.addEventListener('change', function () {
+            document.documentElement.className = switchBox.checked ? 'dark' : 'light'
+        })
+    </script>
+</body>
+
+</html>

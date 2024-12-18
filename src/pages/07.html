@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        .bgc {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s;
+        }
+
+        .box {
+            display: flex;
+            align-items: center;
+            width: 200px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 55px;
+            height: 20px;
+            padding: 2px;
+            margin-left: 10px;
+            border: 2px solid #485cf9;
+            border-radius: 16px;
+            cursor: pointer;
+        }
+
+        .left,
+        .right {
+            width: 20px;
+            height: 20px;
+            border-radius: 50px;
+        }
+
+        .left {
+            float: left;
+            background: url(../assets/images/sun.svg) no-repeat center;
+            background-size: cover;
+        }
+
+
+
+        .right {
+            float: right;
+            background: url(../assets/images/moon.svg) no-repeat center;
+            background-size: 85%;
+        }
+
+        .btn {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #4665ff;
+            border-radius: 9999px;
+            transition: all 1s;
+
+        }
+
+        .dark {
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bgc">
+        <div class="box">
+            <span class="text">JavaScript</span>
+            <div class="toggle">
+                <div class="left">
+                </div>
+                <div class="right"></div>
+                <div class="btn"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let bgc = document.querySelector('.bgc')
+        let box = document.querySelector('.box')
+        let toggle = document.querySelector('.toggle')
+        let left = document.querySelector('.left')
+        let right = document.querySelector('.right')
+        let text = document.querySelector('.text')
+        let btn = document.querySelector('.btn')
+        // 当前状态 sun
+        let flag = true
+        toggle.addEventListener('click', function (e) {
+            if (flag) {
+                btn.style.transform = `translateX(35px)`
+                bgc.classList.add('dark')
+                text.style.color = '#fff'
+                flag = false
+            } else {
+                btn.style.transform = `translateX(0px)`
+                bgc.classList.remove('dark')
+                text.style.color = '#333'
+                flag = true
+            }
+        })
+    </script>
+</body>
+
+</html>

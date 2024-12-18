@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鸡你太美</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .step {
+            margin-top: 100px;
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            animation: identifier 4s forwards;
+            animation-timing-function: steps(4);
+        }
+
+        @keyframes identifier {
+            100% {
+                transform: translateX(800px);
+            }
+        }
+
+        .iKun {
+            margin: auto;
+            width: 1200px;
+            height: 540px;
+            background-image: url(/src/assets/images/ikun.png);
+            background-size: 1200px;
+            background-position: 0 0;
+            animation: iKun 1s steps(10) infinite forwards;
+        }
+
+        @keyframes iKun {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 0 -5400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="iKun">
+
+    </div>
+</body>
+
+</html>

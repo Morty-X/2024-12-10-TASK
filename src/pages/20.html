@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>验证码组件</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            margin: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+
+
+        .box input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            outline: none;
+            border: 1px solid #999;
+            border-collapse: collapse;
+            margin-right: -1px;
+        }
+
+        .box input:nth-child(4n+1) {
+            border-radius: 5px 0 0 5px;
+        }
+
+        .box input:nth-child(4n-1) {
+            border-radius: 0 5px 5px 0;
+        }
+
+        .box span {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .focuStyle {
+            border: 2px solid #3f3f3f;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <input type="text" data-id="0">
+        <input type="text" data-id="1">
+        <input type="text" data-id="2">
+        <span>•</span>
+        <input type="text" data-id="3">
+        <input type="text" data-id="4">
+        <input type="text" data-id="5">
+    </div>
+
+    <script>
+        let box = document.querySelector('.box')
+        let inputs = document.querySelectorAll('.box input')
+
+        // 排他思想，给对应索引位置的输入框设置样式
+        function selectedStyle(num) {
+            for (let j = 0; j < inputs.length; j++) {
+                inputs[j].classList.remove('focuStyle')
+            }
+            inputs[num].className = 'focuStyle'
+        }
+
+        // 鼠标点击输入框，改变输入框样式
+        box.addEventListener('focus', function (e) {
+            e.stopPropagation()
+            let item = e.target.tagName === 'INPUT' ? e.target : ''
+            // 获取对应的索引
+            let index = item.dataset.id
+            // 设置样式
+            selectedStyle(index)
+        }, true)
+
+        // 键盘弹起事件
+        box.addEventListener('keyup', function (e) {
+            let item = e.target.tagName === 'INPUT' ? e.target : ''
+            let index = item.dataset.id
+            // 每个输入框只能输入一个字符
+            item.value = item.value[0]
+            // 处理删除的情况
+            if (e.keyCode === 8 || e.keyCode === 46) {
+                item.value = ''
+                index--
+                if (index < 0) {
+                    item.blur()
+                    item.className = ''
+                } else {
+                    inputs[index].focus()
+                    selectedStyle(index)
+                }
+            } else {
+                index++
+                if (index > 5) {
+                    item.blur()
+                    item.className = ''
+                } else {
+                    inputs[index].focus()
+                    selectedStyle(index)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

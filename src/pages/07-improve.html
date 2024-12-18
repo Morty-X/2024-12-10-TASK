@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .dark body {
+            background-color: #000;
+        }
+
+        .light body {
+            background-color: #fff;
+        }
+
+        .dark .switch-container h1 {
+            color: #fff;
+            transition: all 300ms;
+        }
+
+        .switch-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 400px;
+            height: 200px;
+            margin: auto;
+            margin-top: 200px;
+        }
+
+        #switch-input {
+            display: none;
+        }
+
+        .switch-main {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 120px;
+            height: 50px;
+            padding: 0 3px;
+            margin-left: 10px;
+            border-radius: 25px;
+            border: 1px solid #4665ff;
+
+            cursor: pointer;
+        }
+
+        .sun,
+        .moon {
+            width: 40px;
+            height: 40px;
+            background-color: orange;
+            border-radius: 50%;
+        }
+
+        .sun {
+            background: url(../assets/images/sun.svg) no-repeat center;
+            background-size: cover;
+        }
+
+        .moon {
+            background: url(../assets/images/moon.svg) no-repeat center;
+            background-size: cover;
+        }
+
+        .switch-main::after {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            content: '';
+            width: 40px;
+            height: 40px;
+            background-color: #4665ff;
+            border-radius: 50%;
+            transition: all 300ms;
+        }
+
+        #switch-input:checked~.switch-main::after {
+            transform: translateX(75px);
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="switch-container">
+        <h1>JavaScript</h1>
+        <input id="switch-input" type="checkbox">
+
+        <label class="switch-main" for="switch-input">
+            <span class="sun"></span>
+            <span class="moon"></span>
+        </label>
+    </div>
+    </label>
+    <script>
+        let checkbox = document.querySelector('#switch-input')
+        checkbox.addEventListener('change', function () {
+            document.documentElement.className = this.checked ? 'dark' : 'light'
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-image: radial-gradient(circle at 100px 100px, #000 0%, #000 0%, #fff 0%, #fff 100%);
+            transition: all ease-in-out 1s;
+        }
+
+        .container {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <label for="checkbox">dark/light</label>
+        <input type="checkbox" id="checkbox">
+    </div>
+    <script>
+        let checkbox = document.querySelector('#checkbox')
+        console.log(checkbox);
+
+        let checkboxObj = checkbox.getBoundingClientRect()
+
+        let positionCheckBox = {
+            x: checkboxObj.x,
+            y: checkboxObj.y
+        }
+        console.log(checkboxObj);
+        console.log(positionCheckBox);
+
+
+
+
+        let originValue = 0
+        checkbox.addEventListener('change', function (e) {
+            let isChecked = this.checked
+            let timerId = null
+            if (isChecked) {
+                timerId = setInterval(function () {
+                    originValue += 1
+                    document.body.style.backgroundImage = `radial-gradient(circle at ${positionCheckBox.x}px ${positionCheckBox.y}px, #000 0%, #000 ${originValue}%, #fff 0%, #fff 100%)`
+                    if (originValue > 100) {
+                        clearInterval(timerId)
+                    }
+                }, 17)
+            } else {
+                timerId = setInterval(function () {
+                    originValue -= 1
+                    document.body.style.backgroundImage = `radial-gradient(circle at ${positionCheckBox.x}px ${positionCheckBox.y}px, #000 0%, #000 ${originValue}%, #fff 0%, #fff 100%)`
+                    if (originValue < 0) {
+                        clearInterval(timerId)
+                    }
+                }, 17)
+            }
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+  * {
+      margin: 0;
+      padding: 0;
+  }
+
+  @property --month {
+      syntax: "<string>";
+      inherits: true;
+      initial-value: '';
+  }
+  
+  .calendar {
+      width: 280px;
+      height: 360px;
+      margin: auto;
+      margin-top: 50px;
+      padding: 10px 15px;
+      border: 1px solid #eee;
+      box-shadow: 0px 1px 3px 0px #999;
+      border-radius: 20px;
+      --month: 0
+  }
+
+  .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 270px;
+      height: 40px;
+      user-select: none;
+  }
+
+  .top .prev:active,
+  .top .next:active {
+      color: palevioletred;
+      background-color: skyblue;
+  }
+
+
+  .top .prev .prev:hover,
+  .top .next .next:hover {
+      border-color: #999;
+      color: #999;
+      font-weight: 700;
+  }
+
+  .top span {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      border: 1px solid #f3f3f3;
+      border-radius: 10px;
+      cursor: pointer;
+  }
+
+  .main {
+      position: relative;
+  }
+
+  .main::before {
+      content: var(--month);
+      font-size: 160px;
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ddd;
+      z-index: -1;
+  }
+
+  .main-week {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .main-week strong {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      color: #666;
+  }
+
+  .calendar-main-body {
+      display: flex;
+      flex-wrap: wrap;
+      width: 280px;
+  }
+
+  .calendar-main-body div {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+  }
+
+  .calendar-date__current {}
+
+  .calendar-date__current:hover {
+      color: #f3f3f3;
+      background-color: #2b2b2b;
+      border-radius: 10px;
+  }
+
+  .calendar-main-body .calendar-date__disable {
+      cursor: not-allowed;
+      color: #999;
+  }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02</title>
+    <style>
+        body {
+            background-color: #000;
+        }
+
+        .box {
+            color: orange;
+            text-align: center;
+            width: 300px;
+            height: 50px;
+            outline: none;
+            border: 2px solid orange;
+            background-color: #000;
+        }
+
+        .light {
+            border: 2px solid #fff;
+            box-shadow: 0px 1px 2px 2px pink inset;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <input class="box" value="1000"></input>
+    <script>
+        let box = document.querySelector('.box')
+        box.addEventListener('focus', function (e) {
+            box.classList.add('light')
+        })
+        box.addEventListener('blur', function () {
+            box.classList.contains('light') ? box.classList.remove('light') : ''
+            box.value = 5
+            let timeId = setInterval(function () {
+                let numVlue = Number(box.value) + Math.floor(Math.random() * 201);
+                box.value = numVlue
+                if (numVlue >= 1000) {
+                    box.value = 1000
+                    clearInterval(timeId)
+                }
+            }, 200)
+        })
+    </script>
+</body>
+
+</html>

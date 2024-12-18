@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 260px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 120px;
+        }
+
+        .countdown,
+        .millSeconds {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dayLevel {
+            height: 100px;
+            padding-left: 30px;
+        }
+        
+        span {
+            display: block;
+            margin-bottom: 14px;
+            color: #666;
+        }
+
+        em {
+            display: inline-block;
+            width: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 倒计时函数 -->
+    <div class="box">
+        <div class="top">
+            <div class="countdown">
+                <span>Countdown</span>
+                <strong></strong>
+            </div>
+            <div class="millSeconds">
+                <span>Million Seconds</span>
+                <strong></strong>
+            </div>
+        </div>
+        <div class="dayLevel">
+            <span>Day Level</span>
+            <strong></strong>
+        </div>
+    </div>
+    <em></em>
+    <script>
+        let targetDate = new Date('2024/12/13 00:00:00')
+
+        let timeId = setInterval(function () {
+            let nowDate = new Date()
+            // 毫秒数
+            let diffMillSeconds = targetDate.getTime() - nowDate.getTime()
+            // 千分位的毫秒数
+            let diffMillSec1000 = (targetDate.getTime() - nowDate.getTime()) % 1000
+            // 天数
+            let diffDays = Math.ceil(diffMillSeconds / (1 * 24 * 60 * 60 * 1000))
+            // 小时数
+            let diffHours = Math.floor(diffMillSeconds / (60 * 60 * 1000))
+            // 24小时制的小时
+            let diffHours24 = Math.floor(diffMillSeconds / (60 * 60 * 1000) % 24)
+            // 分钟数
+            let diffMinutes = Math.floor((diffMillSeconds / (60 * 1000)) % 60)
+            // 秒数
+            let diffSeconds = Math.floor((diffMillSeconds / 1000) % 60)
+            let texts = document.querySelectorAll('strong')
+            texts[0].innerHTML = ` ${diffHours}   :   ${diffMinutes}   :   ${diffSeconds}`
+            texts[1].innerHTML = `<em>${diffHours}</em>:<em>${diffMinutes}</em>:<em>${diffSeconds}</em>:<em>${diffMillSec1000}</em> `
+            texts[2].innerHTML = ` ${diffDays} 天 ${diffHours24} 时 ${diffMinutes} 分 ${diffSeconds} 秒`
+        }, 50)
+
+
+        /*   let nowDate = new Date()
+          // 毫秒数
+          let diffMillSeconds = targetDate.getTime() - nowDate.getTime()
+          // 千分位的毫秒数
+          let diffMillSec1000 = (targetDate.getTime() - nowDate.getTime()) % 1000
+          // 天数
+          let diffDays = Math.ceil(diffMillSeconds / (1 * 24 * 60 * 60 * 1000))
+  
+          // 小时数
+          let diffHours = Math.floor(diffMillSeconds / (60 * 60 * 1000))
+          // 24小时制的小时
+          let diffHours24 = Math.floor(diffMillSeconds / (60 * 60 * 1000) % 24)
+          console.log(diffHours);
+  
+          // 分钟数
+          let diffMinutes = Math.floor((diffMillSeconds / (60 * 1000)) % 60)
+          // 秒数
+          let diffSeconds = Math.floor((diffMillSeconds / 1000) % 60)
+  
+          let texts = document.querySelectorAll('strong')
+          console.log(texts);
+          texts[0].innerHTML = `${diffHours}:${diffMinutes}:${diffSeconds}`
+          texts[1].innerHTML = `${diffHours}:${diffMinutes}:${diffSeconds}:${diffMillSec1000}`
+          texts[2].innerHTML = `${diffDays}天 ${diffHours24}时 ${diffMinutes}分 ${diffSeconds}秒`
+   */
+
+    </script>
+</body>
+
+</html>

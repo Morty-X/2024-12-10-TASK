@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03</title>
+    <style>
+        * {
+            margin: 0;
+            background-color: rgba(31, 31, 31);
+        }
+
+        .box {
+            position: relative;
+            margin: auto;
+            width: 400px;
+            height: 50px;
+            border: 1px solid #fff;
+        }
+
+        .box div {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .underBox {
+            background-color: rgba(243, 106, 248, 0.3);
+        }
+
+        .aniBox {
+            background-color: #f36af8;
+        }
+
+        .main {
+            width: 100px;
+            height: 100px;
+            background-image: linear-gradient(red, yellow);
+            position: relative;
+            left: 0px;
+            transform: translateX(0);
+        }
+
+        .symbol {
+            position: absolute;
+            top: 0;
+            left: 800px;
+            width: 1px;
+            height: 100vh;
+            background-color: red;
+            /* transform: translateX(100px); */
+        }
+    </style>
+</head>
+
+<body>
+    3、动画效果
+    <div class="box">
+        <div class="underBox"></div>
+        <div class="aniBox"></div>
+    </div>
+
+    <!-- <div class="main"></div>
+    <div class="symbol"></div> -->
+
+
+    <script>
+        let box = document.querySelector('.box')
+        // 给 aniBox 一个动画效果
+
+        let aniBox = document.querySelector('.aniBox')
+
+        // 动画终点位置
+        let terminal = parseInt(getComputedStyle(box).width) - parseInt(getComputedStyle(aniBox).width)
+        console.log(terminal);
+
+        // 设置步长（每次移动的次数）
+        let stepLength = 17
+
+        // 起始位置aniBox 的 left位置
+        // 因为DOM操作很昂贵，所以尽量少用DOM操作
+        let currentLeft = parseInt(getComputedStyle(aniBox).left)
+        let nextLeftValue = currentLeft
+        let timeId = setInterval(function () {
+            nextLeftValue += stepLength
+            // 最后一步的步长
+            let lastStepLength = terminal - nextLeftValue
+            if (terminal - nextLeftValue < stepLength) {
+                stepLength = lastStepLength
+            }
+            if (nextLeftValue > terminal) {
+                clearInterval(timeId)
+            }
+            aniBox.style.transform = `translateX(${nextLeftValue}px)`
+            // aniBox.style.left = `${nextLeftValue}px`
+        }, 20)
+
+
+
+
+
+
+
+
+        // let main = document.querySelector('.main')
+        /*  // 步长
+         let stepLength = 27
+         // 终点位置
+         let terminal = 800
+         let timeId = setInterval(function () {
+             // 上一次left的值
+             let currentLeft = parseInt(getComputedStyle(main).left)
+             // 下一次的left值
+             let nextLeftValue = currentLeft + stepLength
+             // 最后一步运动的距离
+             let lastStepLength = terminal - nextLeftValue
+ 
+             if (lastStepLength < stepLength) {
+                 stepLength = lastStepLength
+             }
+             if (nextLeftValue >= terminal) {
+                 clearInterval(timeId)
+             }
+             // 当前的left值
+             main.style.left = `${nextLeftValue}px`
+         }, 17) */
+
+
+
+
+    </script>
+</body>
+
+</html>
